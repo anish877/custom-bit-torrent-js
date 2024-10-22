@@ -31,7 +31,7 @@ function decodeBencode(bencodedValue) {
           const encodedString = bencodedElements.slice(indexOfColon-1,indexOfColon+lengthOfString+1)
           const decodedString = decodeBencode(encodedString)
           bencodedElements = bencodedElements.replace(encodedString,"")
-          console.log(bencodedElements,encodedString,decodedString)
+          list.push(decodedString)
         }
         while(true){
           index=0
@@ -41,7 +41,7 @@ function decodeBencode(bencodedValue) {
           const endcodedInteger = bencodedElements.slice(indexOfi,indexOfe+1)
           const decodedInteger = decodeBencode(endcodedInteger)
           bencodedElements = bencodedElements.replace(endcodedInteger,"")
-          console.log(bencodedElements,endcodedInteger,decodedInteger)
+          list.push(decodedInteger)
         }
       }
     }
