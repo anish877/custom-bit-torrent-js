@@ -28,7 +28,7 @@ function decodeBencode(bencodedValue) {
           const indexOfColon = bencodedElements.indexOf(':')
           if(indexOfColon===-1){break}
           const lengthOfString = parseInt(bencodedElements.charAt(indexOfColon-1))
-          const encodedString = bencodedElements.slice(indexOfColon-1,indexOfColon+lengthOfString)
+          const encodedString = bencodedElements.slice(indexOfColon-1,indexOfColon+lengthOfString+1)
           const decodedString = decodeBencode(encodedString)
           bencodedElements = bencodedElements.replace(encodedString,"")
           console.log(bencodedElements,encodedString,decodedString)
