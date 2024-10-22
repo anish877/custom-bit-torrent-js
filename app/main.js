@@ -24,9 +24,7 @@ function decodeBencode(bencodedValue) {
       const remaningElements = bencodedElements.replace(lengthOfString+':'+string,"")
       const integer = decodeBencode(remaningElements)
       return ([string,integer])
-
     }
-
     else{
       throw new Error("Invalid encoded value");
     }
