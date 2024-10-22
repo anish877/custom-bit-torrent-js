@@ -20,10 +20,15 @@ function decodeBencode(bencodedValue) {
       const bencodedElements = bencodedValue.slice(1,bencodedValue.length-1)
       console.log(bencodedElements)
       const indexOfColon = bencodedElements.indexOf(":")
+      console.log(indexOfColon)
       const lengthOfString = bencodedElements.charAt(indexOfColon-1)
+      console.log(lengthOfString)
       const string = bencodedElements.slice(indexOfColon+1,indexOfColon+lengthOfString)
+      console.log(string)
       const remaningElements = bencodedElements.replace(lengthOfString+':'+string,"")
+      console.log(remaningElements)
       const integer = decodeBencode(remaningElements)
+      console.log(integer)
       return ([string,integer])
     }
     else{
