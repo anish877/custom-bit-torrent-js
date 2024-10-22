@@ -12,16 +12,26 @@ function decodeBencode(bencodedValue) {
       throw new Error("Invalid encoded value");
     }
     return bencodedValue.substr(firstColonIndex + 1);
-  } else {
-    if(bencodedValue[0]==='i' && bencodedValue[bencodedValue.length-1]==='e'){
+  } else if(bencodedValue[0]==='i' && bencodedValue[bencodedValue.length-1]==='e'){
       return(parseInt(bencodedValue.slice(1,-1)))
+    }
+
+    else if(bencodedValue[0]==='l' && bencodedValue[bencodedValue.length-1]==='e'){
+      const bencodedElements = bencodedValue.slice(1,bencodedValue.length-1)
+      const indexOfColon = bencodedElements.indexOf(":")
+      const lengthOfString = bencodedElements.charAt(indexOfColon-1)
+      const string = bencodedElements.slice(indexOfColon+1,indexOfColon+lengthOfString)
+      const remaningElements = bencodedElements.replace(lengthOfString+':'+string,"")
+      const integer = decodeBencode(remaningElements)
+      return ([string,integer])
+
     }
 
     else{
       throw new Error("Invalid encoded value");
     }
   }
-}
+
 
 function main() {
   const command = process.argv[2];
