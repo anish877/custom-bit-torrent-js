@@ -13,7 +13,13 @@ function decodeBencode(bencodedValue) {
     }
     return bencodedValue.substr(firstColonIndex + 1);
   } else {
-    throw new Error("Only strings are supported at the moment");
+    if(bencodedValue[0]==='i' && bencodedValue[-1]==='e'){
+      return(bencodedValue.slice(1,-1))
+    }
+    
+    else{
+      throw new Error("Invalid encoded value");
+    }
   }
 }
 
