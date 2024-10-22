@@ -18,6 +18,7 @@ function decodeBencode(bencodedValue) {
 
     else if(bencodedValue[0]==='l' && bencodedValue[bencodedValue.length-1]==='e'){
       const bencodedElements = bencodedValue.slice(1,bencodedValue.length-1)
+      console.log(bencodedElements)
       const indexOfColon = bencodedElements.indexOf(":")
       const lengthOfString = bencodedElements.charAt(indexOfColon-1)
       const string = bencodedElements.slice(indexOfColon+1,indexOfColon+lengthOfString)
