@@ -19,11 +19,11 @@ function decodeBencode(bencodedValue) {
     else if(bencodedValue[0]==='l' && bencodedValue[bencodedValue.length-1]==='e'){
       const bencodedElements = bencodedValue.slice(0,bencodedValue.length-1)
       console.log(bencodedElements)
-      if(bencodedElements=""){
+      if(bencodedElements===""){
         return []
       }
       else{
-        
+
       }
     }
     else{
