@@ -28,13 +28,13 @@ function decodeBencode(bencodedValue) {
           const indexOfColon = bencodedElements.indexOf(':')
           const indexOfi = bencodedElements.indexOf('i')
           if(indexOfColon===-1 && indexOfi===-1){break}
-          if(indexOfColon<indexOfi){
+          if(indexOfColon<indexOfi && indexOfColon!==-1){
             const lengthOfString = parseInt(bencodedElements.charAt(indexOfColon-1))
             const encodedString = bencodedElements.slice(indexOfColon-1,indexOfColon+lengthOfString+1)
             const decodedString = decodeBencode(encodedString)
             bencodedElements = bencodedElements.replace(encodedString,"")
             list.push(decodedString)
-            console.log(encodedString,decodedString,bencodedElements)
+            console.log(encodedString,decodedString,bencodedElements,list)
           }
           else{
             const indexOfe = bencodedElements.indexOf('e')
@@ -42,7 +42,7 @@ function decodeBencode(bencodedValue) {
             const decodedInteger = decodeBencode(endcodedInteger)
             bencodedElements = bencodedElements.replace(endcodedInteger,"")
             list.push(decodedInteger)
-            console.log(endcodedInteger,decodedInteger,bencodedElements)
+            console.log(endcodedInteger,decodedInteger,bencodedElements,list)
           }
         }
         return list
