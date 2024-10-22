@@ -23,7 +23,16 @@ function decodeBencode(bencodedValue) {
         return list
       }
       else{
-
+        while(true){
+          index = 0
+          const indexOfColon = bencodedElements.indexOf(':')
+          if(indexOfColon===-1){break}
+          const lengthOfString = parseInt(bencodedElements.charAt(indexOfColon-1))
+          const encodedString = bencodedElements.slice(indexOfColon-1,indexOfColon+lengthOfString)
+          const decodedString = decodeBencode(encodedString)
+          bencodedElements = bencodedElements.remove(encodedString)
+          console.log(bencodedElements,encodedString,decodedString)
+        }
       }
     }
     else{
