@@ -34,6 +34,7 @@ function decodeBencode(bencodedValue) {
             const decodedString = decodeBencode(encodedString)
             bencodedElements = bencodedElements.replace(encodedString,"")
             list.push(decodedString)
+            console.log(encodedString,decodedString,bencodedElements)
           }
           else{
             const indexOfe = bencodedElements.indexOf('e')
@@ -41,6 +42,7 @@ function decodeBencode(bencodedValue) {
             const decodedInteger = decodeBencode(endcodedInteger)
             bencodedElements = bencodedElements.replace(endcodedInteger,"")
             list.push(decodedInteger)
+            console.log(endcodedInteger,decodedInteger,bencodedElements)
           }
         }
         return list
