@@ -43,6 +43,7 @@ function decodeBencode(bencodedValue) {
           bencodedElements = bencodedElements.replace(endcodedInteger,"")
           list.push(decodedInteger)
         }
+        return list
       }
     }
     else{
