@@ -21,7 +21,7 @@ function decodeBencode(bencodedValue) {
       const bencodedElements = bencodedValue.slice(1,bencodedValue.length-1)
       console.log(bencodedElements)
       if(bencodedElements===""){
-        return []
+        return ''
       }
       else{
 
