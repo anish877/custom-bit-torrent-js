@@ -13,7 +13,7 @@ function decodeBencode(bencodedValue) {
     }
     return bencodedValue.substr(firstColonIndex + 1);
   } else {
-    console.log(bencodedValue[0],bencodedValue[-1])
+    console.log(bencodedValue[0],bencodedValue[bencodedValue.length-1])
     if(bencodedValue[0]==='i' && bencodedValue[-1]==='e'){
       return(bencodedValue.slice(1,-1))
     }
