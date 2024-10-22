@@ -30,7 +30,7 @@ function decodeBencode(bencodedValue) {
           const lengthOfString = parseInt(bencodedElements.charAt(indexOfColon-1))
           const encodedString = bencodedElements.slice(indexOfColon-1,indexOfColon+lengthOfString)
           const decodedString = decodeBencode(encodedString)
-          bencodedElements = bencodedElements.remove(encodedString)
+          bencodedElements = bencodedElements.replace(encodedString,"")
           console.log(bencodedElements,encodedString,decodedString)
         }
       }
