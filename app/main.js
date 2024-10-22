@@ -33,6 +33,16 @@ function decodeBencode(bencodedValue) {
           bencodedElements = bencodedElements.replace(encodedString,"")
           console.log(bencodedElements,encodedString,decodedString)
         }
+        while(true){
+          index=0
+          const indexOfi = bencodedElements.indexOf('i')
+          if(indexOfi===-1){break}
+          const indexOfe = bencodedElements.indexOf('e')
+          const endcodedInteger = bencodedElements.slice(indexOfi,indexOfe+1)
+          const decodedInteger = decodeBencode(endcodedInteger)
+          bencodedElements = bencodedElements.replace(endcodedInteger,"")
+          console.log(bencodedElements,endcodedInteger,decodedInteger)
+        }
       }
     }
     else{
