@@ -25,8 +25,8 @@ function decodeBencode(bencodedValue) {
       else{
         while(true){
           let index = 0
-          const indexOfColon = bencodedElements.indexOf(':')
-          const indexOfi = bencodedElements.indexOf('i')
+          const indexOfColon = bencodedElements.indexOf(':',index)
+          const indexOfi = bencodedElements.indexOf('i',index)
           if(indexOfColon===-1 && indexOfi===-1){break}
           if(indexOfColon<indexOfi && indexOfColon!==-1 && indexOfi!==-1){
             const lengthOfString = parseInt(bencodedElements.charAt(indexOfColon-1))
