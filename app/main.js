@@ -34,6 +34,7 @@ function decodeBencode(bencodedValue) {
             const decodedString = decodeBencode(encodedString)
             index = indexOfColon+lengthOfString+1
             list.push(decodedString)
+            console.log(index,encodedString,decodedString)
           }
           else if(indexOfi<indexOfColon && indexOfColon!==-1 && indexOfi!==-1){
             const indexOfe = bencodedElements.indexOf('e')
@@ -41,6 +42,7 @@ function decodeBencode(bencodedValue) {
             const decodedInteger = decodeBencode(endcodedInteger)
             index = indexOfe + 1
             list.push(decodedInteger)
+            console.log(index,decodedInteger,endcodedInteger)
           }
         }
         return list
