@@ -24,22 +24,22 @@ function decodeBencode(bencodedValue) {
       }
       else{
         while(true){
-          index = 0
+          let index = 0
           const indexOfColon = bencodedElements.indexOf(':')
           const indexOfi = bencodedElements.indexOf('i')
           if(indexOfColon===-1 && indexOfi===-1){break}
-          if(indexOfColon<indexOfi && indexOfColon!==-1){
+          if(indexOfColon<indexOfi && indexOfColon!==-1 && indexOfi!==-1){
             const lengthOfString = parseInt(bencodedElements.charAt(indexOfColon-1))
             const encodedString = bencodedElements.slice(indexOfColon-1,indexOfColon+lengthOfString+1)
             const decodedString = decodeBencode(encodedString)
-            bencodedElements = bencodedElements.replace(encodedString,"")
+            index = indexOfColon+lengthOfString+1
             list.push(decodedString)
           }
-          else if(indexOfi!==-1){
+          else if(indexOfi<indexOfColon && indexOfColon!==-1 && indexOfi!==-1){
             const indexOfe = bencodedElements.indexOf('e')
             const endcodedInteger = bencodedElements.slice(indexOfi,indexOfe+1)
             const decodedInteger = decodeBencode(endcodedInteger)
-            bencodedElements = bencodedElements.replace(endcodedInteger,"")
+            index = indexOfe + 1
             list.push(decodedInteger)
           }
         }
