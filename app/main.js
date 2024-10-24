@@ -45,6 +45,7 @@ function decodeBencode(bencodedValue) {
             console.log(index,decodedInteger,endcodedInteger)
           }
         }
+        
         return list
       }
     }
