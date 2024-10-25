@@ -21,6 +21,7 @@ function decodeBencode(bencodedValue) {
           const indexOfColon = bencodedElements.indexOf(':')
           const indexOfi = bencodedElements.indexOf('i')
           const indexOfl = bencodedElements.indexOf('l')
+          const indexOfd = bencodedElements.indexOf('d')
 
           if(indexOfColon===-1&&indexOfi===-1) {break} 
 
@@ -61,6 +62,23 @@ function decodeBencode(bencodedValue) {
             }
 
           }
+          else if(indexOfd===0){
+            let temp = bencodedElements
+            while(true){
+              const indexOfe = temp.lastIndexOf('e')
+              if(!isNaN(temp.charAt(indexOfe-1))){
+                temp = temp.slice(0,indexOfe)
+                continue
+              }
+              else{
+                const encodedDictionary = bencodedElements.slice(0,indexOfe+1)
+                const decodedDictionary = decodeBencode(encodedDictionary)
+                list,push(decodedDictionary)
+                bencodedElements = bencodedElements.slice(indexOfe+1)
+                break
+              }
+            }
+          }
         }
       }
       return list
@@ -81,6 +99,7 @@ function decodeBencode(bencodedValue) {
         const indexOfElementColon = bencodedElements.indexOf(':')
         const indexOfElementi = bencodedElements.indexOf('i')
         const indexOfElementl = bencodedElements.indexOf('l')
+        const indexOfElementd = bencodedElements.indexOf('d')
         if(indexOfElementColon<indexOfElementi && indexOfElementColon<indexOfElementl && indexOfElementColon!==-1){
           const stringLength = parseInt(bencodedElements.slice(0,indexOfElementColon))
           const encodedString = bencodedElements.slice(0,indexOfElementColon+stringLength+1)
@@ -111,6 +130,23 @@ function decodeBencode(bencodedValue) {
               break
             }
           } 
+        }
+        else if(indexOfElementd===0){
+          let temp = bencodedElements
+          while(true){
+            const indexOfe = temp.lastIndexOf('e')
+            if(!isNaN(temp.charAt(indexOfe-1))){
+              temp = temp.slice(0,indexOfe)
+              continue
+            }
+            else{
+              const encodedDictionary = bencodedElements.slice(0,indexOfe+1)
+              const decodedDictionary = decodeBencode(encodedDictionary)
+              value = decodedDictionary
+              bencodedElements = bencodedElements.slice(indexOfe+1)
+              break
+            }
+          }
         }
         dictonary[decodedKey] = value
 
