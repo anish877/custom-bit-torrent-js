@@ -49,7 +49,8 @@ function decodeBencode(bencodedValue) {
                 const encodedList = bencodedElements.slice(0,indexOfe+1)
                 const decodedList = decodeBencode(encodedList)
                 list.push(decodedList)
-                bencodedElements = bencodedElements.slice(0,indexOfe+1)
+                bencodedElements = bencodedElements.slice(indexOfe+1)
+                console.log(bencodedElements,encodedList,decodedList)
                 break
               }
             }
