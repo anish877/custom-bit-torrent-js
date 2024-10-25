@@ -102,7 +102,6 @@ function decodeBencode(bencodedValue) {
         const indexOfElementd = bencodedElements.indexOf('d')
         if(indexOfElementColon<indexOfElementi && indexOfElementColon<indexOfElementl && indexOfElementColon<indexOfElementd && indexOfElementColon!==-1){
           const stringLength = parseInt(bencodedElements.slice(0,indexOfElementColon))
-          console.log(bencodedElements,stringLength)
           const encodedString = bencodedElements.slice(0,indexOfElementColon+stringLength+1)
           const decodedString = decodeBencode(encodedString)
           bencodedElements = bencodedElements.slice(indexOfElementColon+stringLength+1)
