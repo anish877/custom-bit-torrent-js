@@ -25,16 +25,7 @@ function decodeBencode(bencodedValue) {
 
           if(indexOfColon===-1&&indexOfi===-1) {break} 
 
-          if((indexOfColon<indexOfi && indexOfi!==-1) && (indexOfColon<indexOfl && indexOfl!==-1) && indexOfColon!==-1 && (indexOfColon<indexOfd && indexOfd!==-1)){
-
-            const lengthOfString = parseInt(bencodedElements.slice(0,indexOfColon))
-            const encodedString = bencodedElements.slice(0,indexOfColon+lengthOfString+1)
-            const decodedString = decodeBencode(encodedString)
-            bencodedElements = bencodedElements.slice(indexOfColon+lengthOfString+1)
-            list.push(decodedString)
-
-          }
-          else if(indexOfi===0){
+          if(indexOfi===0){
 
             const indexOfe = bencodedElements.indexOf('e')
             const encodedInteger = bencodedElements.slice(indexOfi,indexOfe+1)
@@ -79,6 +70,15 @@ function decodeBencode(bencodedValue) {
               }
             }
           }
+          else{
+
+            const lengthOfString = parseInt(bencodedElements.slice(0,indexOfColon))
+            const encodedString = bencodedElements.slice(0,indexOfColon+lengthOfString+1)
+            const decodedString = decodeBencode(encodedString)
+            bencodedElements = bencodedElements.slice(indexOfColon+lengthOfString+1)
+            list.push(decodedString)
+
+          }
         }
       }
       return list
@@ -100,14 +100,8 @@ function decodeBencode(bencodedValue) {
         const indexOfElementi = bencodedElements.indexOf('i')
         const indexOfElementl = bencodedElements.indexOf('l')
         const indexOfElementd = bencodedElements.indexOf('d')
-        if((indexOfElementColon<indexOfElementi && indexOfElementi!==-1) && (indexOfElementColon<indexOfElementl && indexOfElementl!==-1) && indexOfElementColon!==-1 && (indexOfElementColon<indexOfElementd && indexOfElementd!==-1)){
-          const stringLength = parseInt(bencodedElements.slice(0,indexOfElementColon))
-          const encodedString = bencodedElements.slice(0,indexOfElementColon+stringLength+1)
-          const decodedString = decodeBencode(encodedString)
-          bencodedElements = bencodedElements.slice(indexOfElementColon+stringLength+1)
-          value = decodedString
-        }
-        else if(indexOfElementi===0){
+
+        if(indexOfElementi===0){
           const indexOfElmente = bencodedElements.indexOf('e')
           const encodedInteger = bencodedElements.slice(indexOfElementi,indexOfElmente+1)
           const decodedInteger = decodeBencode(encodedInteger)
@@ -147,6 +141,13 @@ function decodeBencode(bencodedValue) {
               break
             }
           }
+        }
+        else{
+          const stringLength = parseInt(bencodedElements.slice(0,indexOfElementColon))
+          const encodedString = bencodedElements.slice(0,indexOfElementColon+stringLength+1)
+          const decodedString = decodeBencode(encodedString)
+          bencodedElements = bencodedElements.slice(indexOfElementColon+stringLength+1)
+          value = decodedString
         }
         dictonary[decodedKey] = value
 
