@@ -172,7 +172,7 @@ function main() {
   else if(command==='info'){
     const file = process.argv[3]
     const content = fs.readFileSync(path.resolve(process.cwd(),file)).toString()
-    process.stdout.write(content)
+    process.stdout.write(content.toString())
     const decodedContent = decodeBencode(content.toString())
     process.stdout.write(`Tracker URL: ${decodedContent['announce']}`)
     process.stdout.write(`Length: ${decodedContent['info']['length']}`)
