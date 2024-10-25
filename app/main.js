@@ -173,11 +173,11 @@ function main() {
     const file = process.argv[3]
     process.stdout.write('hello')
     const content = fs.readFileSync(path.resolve(process.cwd(),file)).toString()
-    console.log(content)
+    process.stdout.write(content)
     const decodedContent = decodeBencode(content.toString())
-    console.log(`Tracker URL: ${decodedContent['announce']}`)
-    console.log(`Length: ${decodedContent['info']['length']}`)
-    console.log(decodedContent['info'])
+    process.stdout.write(`Tracker URL: ${decodedContent['announce']}`)
+    process.stdout.write(`Length: ${decodedContent['info']['length']}`)
+    process.stdout.write(decodedContent['info'])
   }
    else {
     throw new Error(`Unknown command ${command}`);
