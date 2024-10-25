@@ -16,16 +16,13 @@ function decodeBencode(bencodedValue) {
       const list = []
       let bencodedElements = bencodedValue.slice(1,bencodedValue.length-1)
       if(bencodedElements===""){}
-      else if(bencodedElements[0]==='l' && (bencodedElements[bencodedElements.length-1]==='e'&&isNaN(bencodedElements.charAt(bencodedElements.length-2)))){
-        list.push(decodeBencode(bencodedElements))
-      }
       else{
         while(true){
           const indexOfColon = bencodedElements.indexOf(':')
           const indexOfi = bencodedElements.indexOf('i')
           const indexOfl = bencodedElements.indexOf('l')
 
-          if(indexOfColon===-1&&indexOfi===-1) {break}
+          if(indexOfColon===-1&&indexOfi===-1) {break} 
           if(indexOfColon===1){
             const lengthOfString = parseInt(bencodedElements.charAt(indexOfColon-1))
             const encodedString = bencodedElements.slice(indexOfColon-1,indexOfColon+lengthOfString+1)
@@ -39,9 +36,23 @@ function decodeBencode(bencodedValue) {
             const decodedInteger = decodeBencode(encodedInteger)
             bencodedElements = bencodedElements.slice(indexOfe+1)
             list.push(decodedInteger)
-          }
+          } 
           else if(indexOfl===0){
-
+            let temp = bencodedElements
+            while(true){
+              const indexOfe = temp.lastIndexOf('e')
+              if(!isNaN(temp.charAt(indexOfe-1))){
+                temp = temp.slice(0,indexOfe)
+                continue
+              }
+              else{
+                const encodedList = bencodedElements.slice(0,indexOfe+1)
+                const decodedList = decodeBencode(encodedList)
+                list.push(decodedList)
+                bencodedElements = bencodedElements.slice(0,indexOfe+1)
+                break
+              }
+            }
           }
         }
       }
