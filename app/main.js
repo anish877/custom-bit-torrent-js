@@ -19,9 +19,7 @@ function decodeBencode(bencodedValue) {
     else if(bencodedValue[0]==='l' && bencodedValue[bencodedValue.length-1]==='e'){
       const list = []
       let bencodedElements = bencodedValue.slice(1,bencodedValue.length-1)
-      if(bencodedElements===""){
-        return list
-      }
+      if(bencodedElements===""){}
       else if(bencodedElements[0]==='l' && bencodedElements[bencodedElements.length-1]==='e'){
         list.push(decodeBencode(bencodedElements))
       }
@@ -45,8 +43,8 @@ function decodeBencode(bencodedValue) {
             list.push(decodedInteger)
           }
         }
-        return list
       }
+      return list
     }
     else{
       throw new Error("Invalid encoded value");
