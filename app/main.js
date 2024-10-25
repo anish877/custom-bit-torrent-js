@@ -26,8 +26,8 @@ function decodeBencode(bencodedValue) {
 
           if(indexOfColon<indexOfi && indexOfColon<indexOfl && indexOfColon!==-1){
 
-            const lengthOfString = parseInt(bencodedElements.charAt(indexOfColon-1))
-            const encodedString = bencodedElements.slice(indexOfColon-1,indexOfColon+lengthOfString+1)
+            const lengthOfString = parseInt(bencodedElements.slice(0,indexOfColon))
+            const encodedString = bencodedElements.slice(0,indexOfColon+lengthOfString+1)
             const decodedString = decodeBencode(encodedString)
             bencodedElements = bencodedElements.slice(indexOfColon+lengthOfString+1)
             list.push(decodedString)
@@ -82,8 +82,8 @@ function decodeBencode(bencodedValue) {
         const indexOfElementi = bencodedElements.indexOf('i')
         const indexOfElementl = bencodedElements.indexOf('l')
         if(indexOfElementColon<indexOfElementi && indexOfElementColon<indexOfElementl && indexOfElementColon!==-1){
-          const stringLength = parseInt(bencodedElements.charAt(indexOfElementColon-1))
-          const encodedString = bencodedElements.slice(indexOfElementColon-1,indexOfElementColon+stringLength+1)
+          const stringLength = parseInt(bencodedElements.slice(0,indexOfElementColon))
+          const encodedString = bencodedElements.slice(0,indexOfElementColon+stringLength+1)
           const decodedString = decodeBencode(encodedString)
           bencodedElements = bencodedElements.slice(indexOfElementColon+stringLength+1)
           value = decodedString
