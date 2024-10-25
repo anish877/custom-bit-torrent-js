@@ -23,7 +23,7 @@ function decodeBencode(bencodedValue) {
         return list
       }
       else if(bencodedElements[0]==='l' && bencodedElements[bencodedElements.length-1]==='e'){
-        decodeBencode(bencodedElements)
+        list.push(decodeBencode(bencodedElements))
       }
       else{
         while(true){
