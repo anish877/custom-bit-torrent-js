@@ -169,8 +169,7 @@ function main() {
     console.log(JSON.stringify(decodeBencode(bencodedValue)));
   }else if(command==='info'){
     const file = process.argv[3]
-    const content = fs.readFileSync(path.resolve(process.cwd(),file))
-    console.log(content.toString())
+    const content = fs.readFileSync(path.resolve(process.cwd(),file)).toString
     const decodedContent = decodeBencode(content.toString())
     console.log(`Tracker URL: ${decodedContent['announce']}`)
     console.log(`Length: ${decodedContent['info']['length']}`)
