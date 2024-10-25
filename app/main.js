@@ -22,6 +22,9 @@ function decodeBencode(bencodedValue) {
       if(bencodedElements===""){
         return list
       }
+      else if(bencodedElements[0]==='l' && bencodedElements[bencodedElements.length-1]==='e'){
+        decodeBencode(bencodedElements)
+      }
       else{
         while(true){
           const indexOfColon = bencodedElements.indexOf(':')
