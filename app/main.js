@@ -1,11 +1,7 @@
 const process = require("process");
 const util = require("util");
 
-// Examples:
-// - decodeBencode("5:hello") -> "hello"
-// - decodeBencode("10:hello12345") -> "hello12345"
 function decodeBencode(bencodedValue) {
-  // Check if the first character is a digit
   if (!isNaN(bencodedValue[0])) {
     const firstColonIndex = bencodedValue.indexOf(":");
     if (firstColonIndex === -1) {
@@ -20,13 +16,15 @@ function decodeBencode(bencodedValue) {
       const list = []
       let bencodedElements = bencodedValue.slice(1,bencodedValue.length-1)
       if(bencodedElements===""){}
-      else if(bencodedElements[0]==='l' && bencodedElements[bencodedElements.length-1]==='e'){
+      else if(bencodedElements[0]==='l' && (bencodedElements[bencodedElements.length-1]==='e' && bencodedElements[bencodedElements.length-1]===NaN)){
         list.push(decodeBencode(bencodedElements))
       }
       else{
         while(true){
           const indexOfColon = bencodedElements.indexOf(':')
           const indexOfi = bencodedElements.indexOf('i')
+          const indexOfl = bencodedElements.indexOf('l')
+
           if(indexOfColon===-1&&indexOfi===-1) {break}
           if(indexOfColon===1){
             const lengthOfString = parseInt(bencodedElements.charAt(indexOfColon-1))
@@ -42,6 +40,9 @@ function decodeBencode(bencodedValue) {
             bencodedElements = bencodedElements.slice(indexOfe+1)
             list.push(decodedInteger)
           }
+          else if(indexOfl===0){
+
+          }
         }
       }
       return list
@@ -54,13 +55,8 @@ function decodeBencode(bencodedValue) {
 
 function main() {
   const command = process.argv[2];
-
-  // Uncomment this block to pass the first stage
   if (command === "decode") {
     const bencodedValue = process.argv[3];
-  
-    // In JavaScript, there's no need to manually convert bytes to string for printing
-    // because JS doesn't distinguish between bytes and strings in the same way Python does.
     console.log(JSON.stringify(decodeBencode(bencodedValue)));
   } else {
     throw new Error(`Unknown command ${command}`);
