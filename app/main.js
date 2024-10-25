@@ -66,7 +66,7 @@ function decodeBencode(bencodedValue) {
       return list
     }
     else if(bencodedValue[0]==='d'&&bencodedValue[bencodedValue.length-1]==='e'){
-      const dictonary = {}
+      let dictonary = {}
       let bencodedElements = bencodedValue.slice(1,bencodedValue.length-1)
       while(true){
         let value = ''
@@ -110,9 +110,10 @@ function decodeBencode(bencodedValue) {
             }
           } 
         }
-        dictonary = {dictonary:value}
+        dictonary.decodedKey = value
 
       }
+      console.log(dictonary)
       return dictonary
     }
     else{
