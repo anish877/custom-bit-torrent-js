@@ -1,3 +1,4 @@
+const { console } = require("inspector");
 const process = require("process");
 const util = require("util");
 
@@ -104,6 +105,7 @@ function decodeBencode(bencodedValue) {
           const stringLength = parseInt(bencodedElements.slice(0,indexOfElementColon))
           const encodedString = bencodedElements.slice(0,indexOfElementColon+stringLength+1)
           const decodedString = decodeBencode(encodedString)
+          console.log(bencodedElements,encodedString,decodedString,stringLength)
           bencodedElements = bencodedElements.slice(indexOfElementColon+stringLength+1)
           value = decodedString
         }
