@@ -113,7 +113,6 @@ function decodeBencode(bencodedValue) {
         dictonary.decodedKey = value
 
       }
-      console.log(dictonary)
       return dictonary
     }
     else{
