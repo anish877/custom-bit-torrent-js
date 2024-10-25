@@ -173,6 +173,7 @@ function main() {
     const file = process.argv[3]
     const content = fs.readFileSync(path.resolve(process.cwd(),file)).toString()
     const decodedContent = decodeBencode(content.toString())
+    process.stdout.write(decodedContent['info'])
   }
    else {
     throw new Error(`Unknown command ${command}`);
