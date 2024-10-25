@@ -2,6 +2,7 @@ const process = require("process");
 const util = require("util");
 const fs = require('fs');
 const path = require("path");
+const { console } = require("inspector");
 
 function decodeBencode(bencodedValue) {
   if (!isNaN(bencodedValue[0])) {
@@ -167,12 +168,14 @@ function main() {
   if (command === "decode") {
     const bencodedValue = process.argv[3];
     console.log(JSON.stringify(decodeBencode(bencodedValue)));
-  }else if(command==='info'){
+  }
+  else if(command==='info'){
     const file = process.argv[3]
     const content = fs.readFileSync(path.resolve(process.cwd(),file)).toString()
     const decodedContent = decodeBencode(content.toString())
     console.log(`Tracker URL: ${decodedContent['announce']}`)
     console.log(`Length: ${decodedContent['info']['length']}`)
+    console.log(decodedContent['info'])
   }
    else {
     throw new Error(`Unknown command ${command}`);
