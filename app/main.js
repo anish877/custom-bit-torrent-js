@@ -50,7 +50,6 @@ function decodeBencode(bencodedValue) {
                 const decodedList = decodeBencode(encodedList)
                 list.push(decodedList)
                 bencodedElements = bencodedElements.slice(indexOfe+1)
-                console.log(bencodedElements,encodedList,decodedList)
                 break
               }
             }
