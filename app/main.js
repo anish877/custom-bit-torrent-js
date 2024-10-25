@@ -32,7 +32,6 @@ function decodeBencode(bencodedValue) {
             const encodedString = bencodedElements.slice(indexOfColon-1,indexOfColon+lengthOfString+1)
             const decodedString = decodeBencode(encodedString)
             bencodedElements = bencodedElements.slice(indexOfColon+lengthOfString+1)
-            console.log(bencodedElements,encodedString,decodedString)
             list.push(decodedString)
           }
           else if(indexOfi===0){
