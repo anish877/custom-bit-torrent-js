@@ -171,6 +171,7 @@ function main() {
   }
   else if(command==='info'){
     const file = process.argv[3]
+    console.log(file)
     const content = fs.readFileSync(path.resolve(process.cwd(),file)).toString()
     console.log(content)
     const decodedContent = decodeBencode(content.toString())
