@@ -67,7 +67,7 @@ function decodeBencode(bencodedValue) {
     }
     else if(bencodedValue[0]==='d'&&bencodedValue[bencodedValue.length-1]==='e'){
       const dictonary = {}
-      const bencodedElements = bencodedValue.slice(1,bencodedValue.length-1)
+      let bencodedElements = bencodedValue.slice(1,bencodedValue.length-1)
       while(true){
         let value = ''
         const indexOfColon = bencodedElements.indexOf(':')
