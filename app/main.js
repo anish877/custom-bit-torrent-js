@@ -1,4 +1,3 @@
-const { console } = require("inspector");
 const process = require("process");
 const util = require("util");
 
