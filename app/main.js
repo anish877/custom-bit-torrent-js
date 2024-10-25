@@ -75,7 +75,7 @@ function decodeBencode(bencodedValue) {
         if(indexOfColon===-1){break}
 
         const lengthOfKey = parseInt(bencodedElements.slice(0,indexOfColon))
-        const encodedKey = bencodedElements.slice(indexOfColon-1,indexOfColon+lengthOfKey+1)
+        const encodedKey = bencodedElements.slice(0,indexOfColon+lengthOfKey+1)
         const decodedKey = decodeBencode(encodedKey)
         bencodedElements = bencodedElements.slice(indexOfColon+lengthOfKey+1)
         const indexOfElementColon = bencodedElements.indexOf(':')
