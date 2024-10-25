@@ -16,7 +16,7 @@ function decodeBencode(bencodedValue) {
       const list = []
       let bencodedElements = bencodedValue.slice(1,bencodedValue.length-1)
       if(bencodedElements===""){}
-      else if(bencodedElements[0]==='l' && (bencodedElements[bencodedElements.length-1]==='e'&&isNaN(bencodedElements[bencodedElements.length-2]))){
+      else if(bencodedElements[0]==='l' && (bencodedElements[bencodedElements.length-1]==='e'&&isNaN(bencodedElements.charAt(bencodedElements.length-2)))){
         list.push(decodeBencode(bencodedElements))
       }
       else{
