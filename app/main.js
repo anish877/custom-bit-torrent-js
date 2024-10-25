@@ -110,7 +110,7 @@ function decodeBencode(bencodedValue) {
             }
           } 
         }
-        dictonary.decodedKey = value
+        dictonary[decodedKey] = value
 
       }
       return dictonary
