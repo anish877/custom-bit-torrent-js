@@ -3,7 +3,6 @@ const util = require("util");
 const fs = require('fs');
 const path = require("path");
 const crypto = require('crypto')
-const {sha1} = require('crypto-js/sha1')
 
 function decodeBencode(bencodedValue) {
   if (!isNaN(bencodedValue[0])) {
@@ -177,7 +176,7 @@ function main() {
     const decodedContent = decodeBencode(stringedContent)
     const indexOfinfo = stringedContent.indexOf('4:info')
     const bencodedInfo = Buffer.from(stringedContent.slice(indexOfinfo+7))
-    const hashedInfo = sha1(crypto.create(bencodedInfo)).toString('hex')
+    const hashedInfo = crypto.createHash('sha1').update(bencodedInfo).digest('hex')
     console.log(hashedInfo)
 
   }
