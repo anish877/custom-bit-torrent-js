@@ -175,6 +175,7 @@ function main() {
     const stringedContent = content.toString()
     const decodedContent = decodeBencode(stringedContent)
     const indexOfinfo = stringedContent.indexOf('d4:info')
+    process.stdout.write(indexOfinfo+'\n')
     const bencodedInfo = stringedContent.slice(indexOfinfo)
     process.stdout.write(bencodedInfo)
 
