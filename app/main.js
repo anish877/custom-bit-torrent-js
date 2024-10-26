@@ -175,7 +175,7 @@ function main() {
     const stringedContent = content.toString()
     const decodedContent = decodeBencode(stringedContent)
     const indexOfinfo = stringedContent.indexOf('4:infod')
-    const bencodedInfo = Buffer.from(stringedContent.slice(indexOfinfo+7))
+    const bencodedInfo = stringedContent.slice(indexOfinfo+7)
     console.log(indexOfinfo,bencodedInfo)
     const hashedInfo = crypto.createHash('sha1').update(bencodedInfo).digest('hex')
     console.log(hashedInfo)
