@@ -2,7 +2,7 @@ const process = require("process");
 const util = require("util");
 const fs = require('fs');
 const path = require("path");
-const { console } = require("inspector");
+const crypto = require('crypto')
 
 function decodeBencode(bencodedValue) {
   if (!isNaN(bencodedValue[0])) {
@@ -175,9 +175,9 @@ function main() {
     const stringedContent = content.toString()
     const decodedContent = decodeBencode(stringedContent)
     const indexOfinfo = stringedContent.indexOf('4:info')
-    process.stdout.write(indexOfinfo+'\n')
+    console.log(indexOfinfo+'\n')
     const bencodedInfo = stringedContent.slice(indexOfinfo+7)
-    process.stdout.write(bencodedInfo)
+    console.log(bencodedInfo)
 
   }
    else {
