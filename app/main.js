@@ -172,8 +172,12 @@ function main() {
   else if(command==='info'){
     const file = process.argv[3]
     const content = fs.readFileSync(path.resolve(process.cwd(),file)).toString()
-    const decodedContent = decodeBencode(content.toString())
-    process.stdout.write(`Length: ${decodedContent['info'].raw()}`)
+    const stringedContent = content.toString()
+    const decodedContent = decodeBencode(stringedContent)
+    const indexOfinfo = stringedContent.indexOf('d4:info')
+    const bencodedInfo = stringedContent.slice(indexOfinfo)
+    process.stdout.write(bencodedInfo)
+
   }
    else {
     throw new Error(`Unknown command ${command}`);
