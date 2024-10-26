@@ -175,7 +175,7 @@ function main() {
     const stringedContent = content.toString()
     const decodedContent = decodeBencode(stringedContent)
     const indexOfinfo = stringedContent.indexOf('4:info')
-    console.log(indexOfinfo+'\n')
+    console.log(indexOfinfo)
     const bencodedInfo = stringedContent.slice(indexOfinfo+7)
     console.log(bencodedInfo)
 
