@@ -173,7 +173,7 @@ function main() {
     const file = process.argv[3]
     const content = fs.readFileSync(path.resolve(process.cwd(),file)).toString()
     const stringedContent = content.toString()
-    const decodedContent = decodeBencode(stringedContent)
+    const decodedContent = Buffer.from(decodeBencode(stringedContent))
     const indexOfinfo = stringedContent.indexOf('4:infod')
     const bencodedInfo = stringedContent.slice(indexOfinfo+7)
     const hashedInfo = crypto.createHash('sha1').update(decodedContent).digest('hex')
