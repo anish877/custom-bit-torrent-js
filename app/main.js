@@ -174,7 +174,7 @@ function main() {
     const content = fs.readFileSync(path.resolve(process.cwd(),file)).toString()
     const stringedContent = content.toString()
     const decodedContent = decodeBencode(stringedContent)
-    const indexOfinfo = stringedContent.indexOf('info')
+    const indexOfinfo = stringedContent.indexOf('4:info')
     process.stdout.write(indexOfinfo+'\n')
     const bencodedInfo = stringedContent.slice(indexOfinfo-3)
     process.stdout.write(bencodedInfo)
