@@ -178,6 +178,21 @@ function decodeBencode(bencodedValue) {
     }
   }
 
+  function sha1HashConverter(data){
+    return crypto.createHash('sha1').update(data).digest('hex')
+  }
+
+  function printPieceHashes(data){
+    const piecesHash = []
+    while(true){
+      if(data.length<20){break}
+      const piece = data.slice(0,20)
+      data = data.slice(20)
+      piecesHash.push(sha1HashConverter(piece))
+    }
+    return piecesHash
+  }
+
 
 function main() {
   const command = process.argv[2];
@@ -192,14 +207,16 @@ function main() {
     const decodedContent = decodeBencode(content)
     const info = decodedContent['info']
     const encodedInfo = Buffer.from(bencode(info),'binary')
-    const infoHash = crypto.createHash('sha1').update(encodedInfo).digest('hex')
+    const infoHash = sha1HashConverter(encodedInfo)
     console.log(`Tracker URL: ${decodedContent['announce']}`);
     console.log(`Length: ${decodedContent['info']['length']}`);
     console.log(`Info Hash: ${infoHash}`)
     console.log(`Piece Length: ${decodedContent['info']['piece length']}`)
     console.log('Piece Hashes:')
-    const pieces = decodedContent['info']['pieces'].split('\n')
-    console.log(pieces)
+    const piecesHash = printPieceHashes(decodedContent['info']['pieces'])
+    piecesHash.map(pieceHash=>{
+      console.log(pieceHash)
+    })
     
   }
    else {
