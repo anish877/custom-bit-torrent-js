@@ -196,7 +196,7 @@ function main() {
     console.log(`Tracker URL: ${decodedContent['announce']}`);
     console.log(`Length: ${decodedContent['info']['length']}`);
     console.log(`Info Hash: ${infoHash}`)
-    console.log(decodedContent['info']["'piece length'"])
+    console.log(decodedContent['info']["piece length"])
     console.log(decodedContent['info']["pieces"])
   }
    else {
