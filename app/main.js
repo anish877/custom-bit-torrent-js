@@ -186,7 +186,7 @@ function main() {
     console.log(JSON.stringify(decodeBencode(bencodedValue)));
   }
   else if(command==='info'){
-    
+
     const file = process.argv[3]
     const content = fs.readFileSync(path.resolve(process.cwd(),file)).toString('binary')
     const decodedContent = decodeBencode(content)
