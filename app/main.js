@@ -193,7 +193,7 @@ function main() {
     const encodedInfo = Buffer.from(bencode(info),'binary')
     const infoHash = crypto.createHash('sha1').update(encodedInfo).digest('hex')
     console.log(`Tracker URL: ${decodedContent['announce']}`);
-    console.log(`Length: ${fileLength['info']['length']}`);
+    console.log(`Length: ${decodedContent['info']['length']}`);
     console.log(`Info Hash: ${infoHash}`)
   }
    else {
