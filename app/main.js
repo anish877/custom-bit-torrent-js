@@ -174,7 +174,7 @@ function main() {
     const content = fs.readFileSync(path.resolve(process.cwd(),file)).toString()
     const stringedContent = content.toString()
     const decodedContent = decodeBencode(stringedContent)
-    console.log(decodedContent['info'].toString())
+    console.log(JSON.stringify(decodedContent['info']))
 
   }
    else {
