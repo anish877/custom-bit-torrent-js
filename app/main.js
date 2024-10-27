@@ -190,10 +190,11 @@ function main() {
     const content = fs.readFileSync(path.resolve(process.cwd(),file)).toString('binary')
     const decodedContent = decodeBencode(content)
     const info = decodedContent['info']
-    console.log(info)
     const encodedInfo = Buffer.from(bencode(info),'binary')
     const infoHash = crypto.createHash('sha1').update(encodedInfo).digest('hex')
-    console.log(infoHash)
+    console.log(`Tracker URL: ${decodedContent['announce']}`);
+    console.log(`Length: ${fileLength['info']['length']}`);
+    console.log(`Info Hash: ${infoHash}`)
   }
    else {
     throw new Error(`Unknown command ${command}`);
