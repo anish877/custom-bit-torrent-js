@@ -200,7 +200,7 @@ function main() {
     console.log('Piece Hashes:')
     const pieces = decodedContent['info']['pieces'].split('\n')
     pieces.map((piece)=>{
-      console.log(crypto.createHash('sha1').update(piece).digest('hex'))
+      console.log(crypto.createHash('sha1').update(piece.toString()).digest('hex'))
     })
     
   }
