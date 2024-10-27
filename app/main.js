@@ -196,8 +196,13 @@ function main() {
     console.log(`Tracker URL: ${decodedContent['announce']}`);
     console.log(`Length: ${decodedContent['info']['length']}`);
     console.log(`Info Hash: ${infoHash}`)
-    console.log(decodedContent['info']["piece length"])
-    console.log(decodedContent['info']["pieces"])
+    console.log(`Piece Length: ${decodedContent['info']['piece length']}`)
+    console.log('Piece Hashes:')
+    const pieces = decodedContent['info']['pieces'].split('\n')
+    pieces.map((piece)=>{
+      console.log(crypto.createHash('sha1').update(piece).digest('hex'))
+    })
+    
   }
    else {
     throw new Error(`Unknown command ${command}`);
