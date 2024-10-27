@@ -189,7 +189,7 @@ function main() {
     const file = process.argv[3]
     const content = fs.readFileSync(path.resolve(process.cwd(),file)).toString('binary')
     const decodedContent = decodeBencode(content)
-    const info = decodedContent[0].info
+    const info = decodedContent['info']
     console.log(info)
     const encodedInfo = Buffer.from(bencode(info),'binary')
     const infoHash = crypto.createHash('sha1').update(encodedInfo).digest('hex')
