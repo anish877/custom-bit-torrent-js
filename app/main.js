@@ -2,7 +2,8 @@ const process = require("process");
 const util = require("util");
 const fs = require('fs');
 const path = require("path");
-const crypto = require('crypto')
+const crypto = require('crypto');
+const { console } = require("inspector");
 
 function bencode(input) {
   if (Number.isFinite(input)) {
@@ -195,6 +196,9 @@ function main() {
     console.log(`Tracker URL: ${decodedContent['announce']}`);
     console.log(`Length: ${decodedContent['info']['length']}`);
     console.log(`Info Hash: ${infoHash}`)
+    console.log(`Piece Length: ${decodedContent['piece length']}`)
+    console.log('Piece Hashes:')
+    console.log(decodedContent['pieces'])
   }
    else {
     throw new Error(`Unknown command ${command}`);
