@@ -186,9 +186,8 @@ function main() {
   }
   else if(command==='info'){
     const file = process.argv[3]
-    const content = fs.readFileSync(path.resolve(process.cwd(),file)).toString()
-    const stringedContent = content.toString()
-    const decodedContent = decodeBencode(stringedContent)
+    const content = fs.readFileSync(path.resolve(process.cwd(),file)).toString('binary')
+    const decodedContent = decodeBencode(content)
     const info = decodedContent['info']
     const encodedInfo = bencode(info)
     const infoHash = crypto.createHash('sha1').update(encodedInfo).digest('hex')
