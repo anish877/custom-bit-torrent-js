@@ -196,9 +196,7 @@ function main() {
     console.log(`Tracker URL: ${decodedContent['announce']}`);
     console.log(`Length: ${decodedContent['info']['length']}`);
     console.log(`Info Hash: ${infoHash}`)
-    console.log(`Piece Length: ${decodedContent['piece length']}`)
-    console.log('Piece Hashes:')
-    console.log(decodedContent['pieces'])
+    console.log(decodedContent)
   }
    else {
     throw new Error(`Unknown command ${command}`);
