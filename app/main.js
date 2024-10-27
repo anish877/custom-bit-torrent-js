@@ -4,6 +4,21 @@ const fs = require('fs');
 const path = require("path");
 const crypto = require('crypto')
 
+function bencode(input) {
+  if (Number.isFinite(input)) {
+    return `i${input}e`;
+  } else if (typeof input === "string") {
+    const s = Buffer.from(input, "binary");
+    return `${s.length}:` + s.toString("binary");
+  } else if (Array.isArray(input)) {
+    return `l${input.map((i) => bencode(i)).join("")}e`;
+  } else {
+    const d = Object.entries(input)
+      .sort(([k1], [k2]) => k1.localeCompare(k2))
+      .map(([k, v]) => `${bencode(k)}${bencode(v)}`);
+    return `d${d.join("")}e`;
+  }
+
 function decodeBencode(bencodedValue) {
   if (!isNaN(bencodedValue[0])) {
     const firstColonIndex = bencodedValue.indexOf(":");
@@ -174,8 +189,10 @@ function main() {
     const content = fs.readFileSync(path.resolve(process.cwd(),file)).toString()
     const stringedContent = content.toString()
     const decodedContent = decodeBencode(stringedContent)
-    console.log(JSON.stringify(decodedContent['info']))
-
+    const info = decodedContent['info']
+    const encodedInfo = bencode(info)
+    const infoHash = crypto.createHash('sha1').update(encodedInfo).digest('hex')
+    console.log(infoHash)
   }
    else {
     throw new Error(`Unknown command ${command}`);
