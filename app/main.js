@@ -18,6 +18,7 @@ function bencode(input) {
       .map(([k, v]) => `${bencode(k)}${bencode(v)}`);
     return `d${d.join("")}e`;
   }
+}
 
 function decodeBencode(bencodedValue) {
   if (!isNaN(bencodedValue[0])) {
