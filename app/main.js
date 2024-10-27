@@ -199,9 +199,7 @@ function main() {
     console.log(`Piece Length: ${decodedContent['info']['piece length']}`)
     console.log('Piece Hashes:')
     const pieces = decodedContent['info']['pieces'].split('\n')
-    pieces.map((piece)=>{
-      console.log(crypto.createHash('sha1').update(piece.toString()).digest('hex'))
-    })
+    console.log(pieces)
     
   }
    else {
